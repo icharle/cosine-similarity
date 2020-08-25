@@ -21,12 +21,17 @@ int main(int argc, char *argv[]) {
         lac.load_customization(dict_path);
     }
 
-    auto originWordItem = lac.run("");
+    std::string inputWord;
+    cout << "please input the first text: ";
+    getline(cin, inputWord);
+    auto originWordItem = lac.run(inputWord);
     std::vector<std::string> originWord;
     for (size_t i = 0; i < originWordItem.size(); ++i) {
         originWord.emplace_back(originWordItem[i].word);
     }
-    auto targetWordItem = lac.run("");
+    cout << "please input the second text: ";
+    getline(cin, inputWord);
+    auto targetWordItem = lac.run(inputWord);
     std::vector<std::string> targetWord;
     for (size_t i = 0; i < originWordItem.size(); ++i) {
         targetWord.emplace_back(targetWordItem[i].word);
