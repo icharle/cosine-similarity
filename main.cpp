@@ -25,18 +25,18 @@ int main(int argc, char *argv[]) {
     cout << "please input the first text: ";
     getline(cin, inputWord);
     auto originWordItem = lac.run(inputWord);
-    std::vector<std::string> originWord;
+    std::vector<std::string> originWordVector;
     for (size_t i = 0; i < originWordItem.size(); ++i) {
-        originWord.emplace_back(originWordItem[i].word);
+        originWordVector.emplace_back(originWordItem[i].word);
     }
     cout << "please input the second text: ";
     getline(cin, inputWord);
     auto targetWordItem = lac.run(inputWord);
-    std::vector<std::string> targetWord;
+    std::vector<std::string> targetWordVector;
     for (size_t i = 0; i < originWordItem.size(); ++i) {
-        targetWord.emplace_back(targetWordItem[i].word);
+        targetWordVector.emplace_back(targetWordItem[i].word);
     }
 
     Similarity similarity;
-    cout << "similar score：" << similarity.cosineSimilarity(originWord, targetWord) << endl;
+    cout << "similar score：" << similarity.cosineSimilarity(originWordVector, targetWordVector) << endl;
 }

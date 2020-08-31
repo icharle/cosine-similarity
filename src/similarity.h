@@ -7,7 +7,7 @@
 
 class Similarity {
 public:
-    double cosineSimilarity(std::vector<std::string> originWord, std::vector<std::string> targetWord);
+    double cosineSimilarity(std::vector<std::string> originWordVector, std::vector<std::string> targetWordVector);
 };
 
 class Values {

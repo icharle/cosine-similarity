@@ -3,11 +3,12 @@
 #include <map>
 #include <math.h>
 
-double Similarity::cosineSimilarity(std::vector<std::string> originWord, std::vector<std::string> targetWord) {
+double Similarity::cosineSimilarity(std::vector<std::string> originWordVector, std::vector<std::string> targetWordVector) {
     std::map<std::string, Values> wordDict = std::map<std::string, Values>();
 
-    for (size_t i = 0; i < originWord.size(); ++i) {
-        std::string tmp_wd = originWord.at(i);
+    // 词向量统计
+    for (size_t i = 0; i < originWordVector.size(); ++i) {
+        std::string tmp_wd = originWordVector.at(i);
         if (wordDict.find(tmp_wd) != wordDict.end()) {
             // 值+1
             Values value1 = wordDict.at(tmp_wd);
@@ -23,8 +24,8 @@ double Similarity::cosineSimilarity(std::vector<std::string> originWord, std::ve
             value1.~Values();
         }
     }
-    for (size_t i = 0; i < targetWord.size(); ++i) {
-        std::string tmp_wd = targetWord.at(i);
+    for (size_t i = 0; i < targetWordVector.size(); ++i) {
+        std::string tmp_wd = targetWordVector.at(i);
         if (wordDict.find(tmp_wd) != wordDict.end()) {
             // 值+1
             Values value2 = wordDict.at(tmp_wd);
@@ -40,14 +41,15 @@ double Similarity::cosineSimilarity(std::vector<std::string> originWord, std::ve
             value2.~Values();
         }
     }
-    double dictNum = 0, originNum = 0, targetNum = 0;
+    // 计算余弦相似度分数
+    double resultVector = 0, originVector = 0, targetVector = 0;
     for (auto it = wordDict.begin(); it != wordDict.end(); it++) {
         int origin = it->second.value1;
         int des = it->second.value2;
-        originNum += origin * origin;
-        targetNum += des * des;
-        dictNum += origin * des;
+        originVector += origin * origin;
+        targetVector += des * des;
+        resultVector += origin * des;
     }
 
-    return dictNum / sqrt(originNum * targetNum);
+    return resultVector / sqrt(originVector * targetVector);
 }
