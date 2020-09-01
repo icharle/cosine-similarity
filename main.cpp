@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     getline(cin, inputWord);
     auto targetWordItem = lac.run(inputWord);
     std::vector<std::string> targetWordVector;
-    for (size_t i = 0; i < originWordItem.size(); ++i) {
+    for (size_t i = 0; i < targetWordItem.size(); ++i) {
         targetWordVector.emplace_back(targetWordItem[i].word);
     }
 
